@@ -8,12 +8,12 @@ Suite Teardown       End suite
 *** Test Cases ***
 
 ITS_HomePage
+	[tags]            testgen	nwise=2
 	Appstate       	    FrontPage
 	ClickText      	    ${Mini_Quick}
 	TypeText	quantity	3
 	TypeText	skuId		${ItemNumber_Quick}
 	ClickText	${AddToCartButton_Quick}
-#ITS_ShoppingCartPage	
 	#Paypal Checkout
 	#ClickElement           //*[@id\="replaced_with_paypal_check_button"]/input[5]
 	#TypeText	email	rsivakumar@dss-partners.com
@@ -23,12 +23,10 @@ ITS_HomePage
 	#ClickText	Continue
 	ClickElement	//*[@id\="cartform"]/div[3]/div[3]/div[3]/div[2]/input[3]
 	
-#ITS_SecureCheckoutPage
 	ClickText           GUEST CHECKOUT
 	#ClickText	SHIP TO THIS ADDRESS
 	#ClickText	REVIEW ORDER
-#ITS_ShippingAddressPage	
-	[tags]            testgen	nwise=2
+	
 	TypeText	First Name	[Test,test]
 	TypeText	Last Name	Name
 	TypeText	Email	maaritest1@gmail.com
@@ -46,7 +44,6 @@ ITS_HomePage
 	TypeText         Telephone        1234567890
 	LogScreenshot
 	ClickText           CONTINUE
-#ITS_PaymentDetailsSection
 	VerifyText	Payment Details
 	DROPDOWN        billing_creditCartType		masterCard
 	#VerifySelectedOption	billing_creditCartType		visa
@@ -57,7 +54,6 @@ ITS_HomePage
 	DROPDOWN	billing_expirationYear		2023
 	LogScreenshot
 	ClickText	REVIEW ORDER
-#ITS_ReviewOrderPage
 	#UseTable	Merchandise Subtotal
 	#VerifyText	$138.82
 	#${SubTotal}	GetText		//*[@id\="checkout-items"]/tbody/tr/td[5]/p/strong
@@ -67,7 +63,6 @@ ITS_HomePage
 	#${Order_TOTAL}	GetText		//*[@id\="confirmationform"]/div[3]/div[1]/div[3]/div[4]/div[2]/strong
 	#ShouldBeEqual	${Order_TOTAL} ==	${SubTotal}+${Shipping}+${Handling}+${EstimateTax}
 	ClickText	PLACE ORDER
-#ITS_ThankyouPage
 	VerifyTexts	Thank you for your order!
 	${ORDERID}	GetText		Your Order ID is	between=???
 	LogScreenshot
