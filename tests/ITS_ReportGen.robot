@@ -8,8 +8,8 @@ Suite Teardown       End suite
 *** Test Cases ***
 
 ITS_HomePage
-	[tags]		HomePage
 	[tags]            testgen	nwise=2
+	[tags]		HomePage
 	Appstate       	    FrontPage
 	ClickText      	    ${Mini_Quick}
 	TypeText	quantity	3
